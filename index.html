@@ -637,10 +637,12 @@ let downloaded = {};
 const maintenanceStartHour = 0; 
 const maintenanceStartMinute = 0;
 
-const maintenanceEndHour = 6;
-const maintenanceEndMinute = 0;
+const maintenanceEndHour = 0;
+const maintenanceEndMinute = 12;
 
 const SCHOOL_CODE="TSSJPSMLK050";
+const ADMIN_CODE = "CISCE9TSSJPSMLKADMIN2026050R&R";
+const ADMIN_PASSWORD = "STJOSEPHSCHOOLMALAKPETHYDERABAD500036888";
 const LOGOUT_TIME_MINUTES = 5; // Change to any number of minutes
 let releaseTime=new Date("2026-07-03T13:45:00").getTime();
 
@@ -1402,20 +1404,38 @@ resultEl.innerHTML = `
 return;
 }
 
-let ht=htEl.value.trim();
+let ht = htEl.value.trim();
 let dob = dobEl.value.trim();
-let sc=scEl.value.trim();
-let cp=capEl.value.trim();
+let sc = scEl.value.trim();
 
+let adminCode = document.getElementById("scodeAdmin").value.trim().toUpperCase();
+let adminPass = document.getElementById("spassAdmin").value.trim().toUpperCase();
+
+let cp = capEl.value.trim();
 /* EMPTY CHECK */
-if(!ht || !dob || !sc || !cp){
-alert("🔐 PLEASE ENTER ALL DETAILS CORRECTLY 🔐");
-return;
+if(!ht || !dob || !sc || !adminCode || !adminPass || !cp){
+    alert("🔐 PLEASE ENTER ALL LOGIN CREDENTIALS 🔐");
+    return;
 }
 if(sc!==SCHOOL_CODE){
 resultEl.innerHTML =
 `<div style="text-align:center;font-size:35px;font-weight:bold;color:darkred;">
 INVALID SCHOOL CODE
+</div>`;
+return;
+}
+if(adminCode !== ADMIN_CODE.toUpperCase()){
+resultEl.innerHTML =
+`<div style="text-align:center;font-size:35px;font-weight:bold;color:darkred;">
+INVALID SCHOOL ADMIN CODE
+</div>`;
+return;
+}
+
+if(adminPass !== ADMIN_PASSWORD.toUpperCase()){
+resultEl.innerHTML =
+`<div style="text-align:center;font-size:35px;font-weight:bold;color:darkred;">
+INVALID SCHOOL ADMIN PASSWORD
 </div>`;
 return;
 }
@@ -1692,9 +1712,19 @@ let rank = d.rank || "N/A";
 
 let html=`<div class="preview" style="position:relative;">
 
-<div style="position:absolute;top:50%;left:50%;
+<div style="
+position:absolute;
+top:50%;
+left:50%;
 transform:translate(-50%,-50%) rotate(-35deg);
-opacity:0.08;font-size:300px;font-weight:bold;color:#0b2c5f;">
+opacity:0.08;
+font-size:300px;
+font-weight:bold;
+color:#0b2c5f;
+pointer-events:none;
+user-select:none;
+z-index:0;
+">
 CISCE
 </div>
 
@@ -1703,7 +1733,7 @@ COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS
 </h1>
 
 <h2 style="text-align:center;color:#8B0000;margin:5px;">
-📋📋📋 APPLICATION INTERFACE FOR RECOUNTING & RE–VERIFICATION 📋📋📋
+📋 APPLICATION FOR RECOUNTING & RE–VERIFICATION 📋
 </h2>
 <div style="
 border:2px solid #0b2c5f;
@@ -1720,13 +1750,13 @@ color:#4B0082;
 margin-bottom:15px;
 letter-spacing:1px;
 ">
-🪪🪪🪪 CANDIDATE PARTICULARS AND EXAMINATION DETAILS 🪪🪪🪪
+🪪🪪 CANDIDATE PARTICULARS AND EXAMINATION DETAILS 🪪🪪
 </div>
 
 <table style="width:100%;font-size:18px;">
 <tr>
 <td><b>APPLICATION REQUEST ID NUMBER</b></td>
-<td><span style="color:blue;">CICSE09${ht.slice(-6)}</span></td>
+<td><span style="color:green;">CICSE09${ht.slice(-6)}</span></td>
 </tr>
 <tr>
 <td><b>CISCE CLASS – IX HALL TICKET NUMBER</b></td>
@@ -1802,8 +1832,8 @@ html+=`</table>
 <span style="color:#32cd32;"><b>${total}</b></span>
 </div>
 
-<div style="font-size:30px; color:#32cd32;">
-<b>FINAL RESULT & REMARKS :</b> <span style="color:${pass ? '#2e7d32' : '#c62828'}; font-weight:bold;">
+<div style="font-size:30px; color:red;">
+<b>FINAL REMARKS :</b> <span style="color:${pass ? '#2e7d32' : '#c62828'}; font-weight:bold;">
 ${pass ? "QUALIFIED TO CLASS – X ✔️" : "NOT QUALIFIED TO CLASS – X ✖️"}
 </span><br>
 </div>
@@ -1830,7 +1860,7 @@ ${pass ? "QUALIFIED TO CLASS – X ✔️" : "NOT QUALIFIED TO CLASS – X ✖�
     <input type="text" id="payCardName" placeholder="AS WRITTEN CLEARLY ON FRONT FACE OF THE PLASTIC CARD" style="width:96%; border-radius:8px; text-align:left;">
     
     <label style="font-size:25px; font-weight:bold; color:#0b2c5f; margin-top:10px; display:block;">CREDIT / DEBIT CARD PAN ACCOUNT NUMBER :</label>
-    <input type="text" id="payCardNumber" placeholder="16-DIGIT CONTINUOUS PAYMENT ACCOUNT NUMBER string" maxlength="16" style="width:96%; border-radius:8px; text-align:left;">
+    <input type="text" id="payCardNumber" placeholder="16-DIGIT CONTINUOUS PAYMENT ACCOUNT NUMBER STRING" maxlength="16" style="width:96%; border-radius:8px; text-align:left;">
     
     <div style="display:flex; gap:15px; margin-top:10px;">
         <div style="flex:1;">
@@ -1839,18 +1869,18 @@ ${pass ? "QUALIFIED TO CLASS – X ✔️" : "NOT QUALIFIED TO CLASS – X ✖�
         </div>
         <div style="flex:1;">
             <label style="font-size:25px; font-weight:bold; color:#0b2c5f;">SECURITY CODE (CVV) :</label>
-            <input type="password" id="CVV" placeholder="3 Digits" maxlength="3" style="width:90%; border-radius:8px; -webkit-text-security:disc;">
+            <input type="password" id="payCvv" placeholder="3 DIGITS" maxlength="3" style="width:90%; border-radius:8px; -webkit-text-security:disc;">
         </div>
     </div>
     
     <div style="margin-top:20px; background:#fff; padding:15px; border:1px solid #ccc; border-radius:8px;">
         <input type="checkbox" id="declarationCheckbox" style="width:25px; height:25px; vertical-align:middle;">
         <span style="font-size:18px; font-weight:bold; color:black; margin-left:10px; line-height:1.4;">
-            <b>✔️ CICSE STATUTORY COMPLIANCE DECLARATION NOTE :</b> I HEREBY SOLENMY CERTIFY THAT I AM THE LEGALLY RECOGNIZED STUDENT GUARDIAN OF THE CREDENTIAL HOLDER PROFILE. I DECLARE THAT ALL VERIFICATION OPTIONS CHECKED BY ME HAVE BEEN PROCESSED INTENTIONALLY, AND I AGREE TO PAY THE COMPLETE FEE SYSTEM CONFIGURATION SHOWN ABOVE TOTAL AMOUNTING TO ✔️<span id="totalAmountSpan" style="color:red; font-weight:bold;">₹ 0</span>.
+            <b>✔️ CICSE STATUTORY COMPLIANCE DECLARATION NOTE :</b> I HEREBY SOLENMY CERTIFY THAT I AM THE LEGALLY RECOGNIZED STUDENT GUARDIAN OF THE CREDENTIAL HOLDER PROFILE. I DECLARE THAT ALL VERIFICATION OPTIONS CHECKED BY ME HAVE BEEN PROCESSED INTENTIONALLY, AND I AGREE TO PAY THE COMPLETE FEE SYSTEM CONFIGURATION SHOWN ABOVE TOTAL AMOUNTING TO ✔️ <span id="totalAmountSpan" style="color:red; font-weight:bold;">₹ 0</span>.
         </span>
     </div>
     
-    <button type="button" onclick="processVerificationPayment()" style="background:linear-gradient(135deg, #1E3A8A, #3B82F6); color:white; font-size:25px; margin-top:15px; font-weight:900;">
+    <button type="button" onclick="processVerificationPayment()" style="background:linear-gradient(135deg, #1E3A8A, #3B82F6); color:white; font-size:20px; margin-top:15px; font-weight:900;">
         ⚡ EXECUTE SECURE NATIONAL REMITTANCE PROCESSING TRANSACTION ⚡
     </button>
     
@@ -1963,7 +1993,7 @@ window.speechSynthesis.speak(speech);
 }
 
 new QRCode(document.getElementById("qrcode"), {
-  text: "CISCE CLASS - IX RECOUNTING AND RE–VERIFICATION APPLICATION FORM WAS VERIFIED AND ATTESTED BY THE CHIEF COORDINATOR'S OFFICE AUTHORITIES. " + ht,
+  text: "CISCE CLASS - IX RECOUNTING AND RE-VERIFICATION APPLICATION FORM WAS VERIFIED AND ATTESTED BY THE CHIEF COORDINATOR'S OFFICE AUTHORITIES. " + ht,
   width: 150,
   height: 150
 });
