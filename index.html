@@ -8,7 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{
   -webkit-user-select:none;
@@ -26,7 +26,7 @@ color:red;
 
 padding:20px 0;
 
-font-size:25px;
+font-size:35px;
 
 font-weight:bold;
 
@@ -301,17 +301,17 @@ font-weight:900;
 }
 </style>
 </head>
-
 <body>
+<div style="height:10px;"> </div>
 <button onclick="toggleMode()" id="modeBtn" style="
 position:end;
-top:15px;
+top:0px;
 right:15px;
 z-index:9999;
 width:auto;
 padding:10px 18px;
 border:none;
-border-radius:30px;
+border-radius:1px;
 background: red;
 color:white;
 font-size:30px;
@@ -323,8 +323,7 @@ box-shadow:0 0 10px rgba(0,0,0,0.3);
 VIEW IN ☀️/🌙 DARK/LIGHT MODE
 
 </button>
-<div style="height:10px;"> </div>
-<div style="height:5px;"> </div>
+<div style="height:23px;"> </div>
 
 <div class="topbar">
 
@@ -359,7 +358,7 @@ letter-spacing:5px;
 
 <div class="announcement-bar">
 
-<marquee scrollamount="20">
+<marquee scrollamount="30">
 
 🏛️ WELCOME TO THE OFFICIAL CISCE CLASS – IX RECOUNTING & RE–VERIFICATION PORTAL : 2026 🏛️
 ​• 📝 APPLICATIONS ARE INVITED FOR RECOUNTING AND RE–VERIFICATION OF THE MATHEMATICS AND PHYSICS SUBJECT PAPERS ONLY 📝
@@ -403,7 +402,7 @@ box-shadow:0 0 20px rgba(0,0,0,0.25);
 <div style="height:45px;"> </div>
 <div style="font-weight:1000; color:darkgreen; font-size:18px; letter-spacing:2px;">
 <h1 style="text-align:center;">
-COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS.
+COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS
 </h1>
 <div style="font-weight:1000; color:red; font-size:18px; letter-spacing:2px;">
 <h1 style="text-align:center;">
@@ -436,6 +435,61 @@ THE CISCE RECOUNTING & RE–VERIFICATION PORTAL IS CURRENTLY UNDERGOING SCHEDULE
 </div>
 
 </div>
+<div id="portalClosedBox" style="
+display:none;
+max-width:900px;
+margin:100px auto;
+background:linear-gradient(135deg, grey, #000000);
+border:4px solid #ff3b3b;
+border-radius:1px;
+padding:60px 40px;
+text-align:center;
+box-shadow:0 0 30px rgba(255, 0, 0, 0.3);
+font-family:'Segoe UI', Arial, sans-serif;
+">
+
+    <h1 style="color:#ff3b3b; font-size:45px; margin-bottom:20px; letter-spacing:2px;">
+        ⛔ APPLICATION PORTAL SERVICES CLOSED ⛔
+    </h1>
+    <div style="height:30px;"> </div>
+    
+    <hr style="border:1px solid #ff3b3b; width:80%; margin:20px auto;">
+    
+    <p style="font-size:26px; color: orange; font-weight:bold; line-height:1.8; margin-top:30px;">
+        THE ONLINE APPLICATION WINDOW SERVICES HAVE BEEN SUCCESSFULLY CLOSED.
+    </p>
+    
+    <p style="font-size:20px; color:yellow; margin-top:25px; line-height:1.6;">
+        No further registration, dashboard login, application submission, credential verification, <br>
+        modification or payment processing is permitted after the scheduled deadline.
+    </p>
+    
+    <div style="
+        margin:35px auto; 
+        background:rgba(255, 59, 59, 0.1); 
+        border:2px dashed #ffcc00; 
+        padding:20px; 
+        display:inline-block; 
+        border-radius:8px;
+    ">
+        <span style="font-size:22px; color:#ffcc00; font-weight:bold; letter-spacing:1px;">
+            ⚠️ OFFICIAL CLOSURE TIMELINE DEEPLY LOCKED ⚠️
+        </span>
+        <br>
+        <span id="closureDetailsDisplay" style="font-size:20px; color:#ffffff; display:block; margin-top:10px; font-weight:bold;">
+            DEADLINE WAS : JULY 07, 2026 AT 11:59 P.M. (IST)
+        </span>
+    </div>
+    <div style="margin-top:8px;font-size:20px;color:#aaa;">
+
+    🔐 SECURED BY THE CICSE DIGITAL RESULT SYSTEM 🔐 v.3.0<br>
+        </div>
+    <div style="margin-top:15px; font-size:20px; color:#888888; letter-spacing:1px;">
+        ©️ 2026. COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS. ALL RIGHTS RESERVED.
+    </div>
+
+</div>
+
 <div class="box" id="loginBox">
 
 <div style="color:blue;">
@@ -445,10 +499,14 @@ THE CISCE RECOUNTING & RE–VERIFICATION PORTAL IS CURRENTLY UNDERGOING SCHEDULE
 🔐 CAREERS' LOGIN DASHBOARD 🔐
 </h2>
 <div style="height:10px;"> </div>
-<input id="ht"
+<input
+id="ht"
 type="password"
 placeholder="CISCE CLASS – IX HALL TICKET NUMBER"
 maxlength="12"
+inputmode="numeric"
+pattern="[0-9]*"
+oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 style="-webkit-text-security:disc;">
 <input id="dob"
 type="password"
@@ -463,13 +521,13 @@ maxlength="12"
 style="-webkit-text-security:disc;">
 <input id="scodeAdmin"
 type="password"
-placeholder="CICSE CLASS - IX SCHOOL ADMIN CODE"
+placeholder="CISCE CLASS - IX SCHOOL ADMIN CODE"
 maxlength="30"
 oninput="this.value=this.value.toUpperCase()"
 style="-webkit-text-security:disc;">
 <input id="spassAdmin"
 type="password"
-placeholder="CICSE CLASS - IX SCHOOL ADMIN PASSWORD"
+placeholder="CISCE CLASS - IX SCHOOL ADMIN PASSWORD"
 maxlength="40"
 oninput="this.value=this.value.toUpperCase()"
 style="-webkit-text-security:disc;">
@@ -627,9 +685,29 @@ margin-top:30px;
 DATE : --/--/---- | ⏰ TIME : --:--:--
 
 </div>
+<div id="logoutTimerBox" style="
+width:901;
+height:45px;
+display:flex;
+visibility:hidden;
+background:#8B0000;
+color:white;
+border-radius:1px;
+font-size:28px;
+font-weight:bold;
+align-items:center;
+justify-content:center;
+box-sizing:border-box;
+padding:5px 10px;
+margin-top:15px;
+">
+⏳ YOUR CURRENT SESSION WILL EXPIRE WITHIN ⏳ :
+<span id="logoutTimer" style="margin-left:8px;">10 M : 00 S</span>
+</div>
 <script>
 
 let downloaded = {};
+let paymentCompleted = false;
 /* DAILY MAINTENANCE SETTINGS */
 
 // EVERYDAY MAINTENANCE TIME
@@ -637,14 +715,19 @@ let downloaded = {};
 const maintenanceStartHour = 0; 
 const maintenanceStartMinute = 0;
 
-const maintenanceEndHour = 0;
-const maintenanceEndMinute = 12;
+const maintenanceEndHour = 6;
+const maintenanceEndMinute = 0;
 
 const SCHOOL_CODE="TSSJPSMLK050";
 const ADMIN_CODE = "CISCE9TSSJPSMLKADMIN2026050R&R";
 const ADMIN_PASSWORD = "STJOSEPHSCHOOLMALAKPETHYDERABAD500036888";
-const LOGOUT_TIME_MINUTES = 5; // Change to any number of minutes
+const LOGOUT_TIME_MINUTES = 10; // Change to any number of minutes
+let logoutInterval = null;
+let logoutSeconds = LOGOUT_TIME_MINUTES * 60;
 let releaseTime=new Date("2026-07-03T13:45:00").getTime();
+// Change this line to define your new July 27, 2026 deadline
+const portalCloseTime = new Date("2026-07-07T23:59:00+05:30").getTime(); 
+
 
 const htEl=document.getElementById("ht");
 const dobEl=document.getElementById("dob");
@@ -750,6 +833,46 @@ if(remaining < 0) remaining = 0;
 
   }
 }
+function checkPortalClosed(){
+
+    if(Date.now() >= portalCloseTime){
+
+        // Hide structural entry components
+        const loginBox = document.getElementById("loginBox");
+        if(loginBox) {
+            loginBox.style.display = "none";
+        }
+
+        // Display the newly styled centered dark alert block
+        const closedBox = document.getElementById("portalClosedBox");
+        if(closedBox) {
+            closedBox.style.display = "block";
+        }
+
+        // Set navbar parameters
+        document.getElementById("liveText").innerHTML = "🔒 PORTAL CLOSED 🔒";
+        if(liveDot) {
+            liveDot.classList.remove("live-green");
+            liveDot.classList.add("live-red");
+        }
+
+        // Shut down interactive controls page-wide
+        document.querySelectorAll("input, button, select").forEach(el => {
+            el.disabled = true;
+        });
+
+        return true;
+    }
+
+    // Keep hidden if timeframe is valid
+    const closedBox = document.getElementById("portalClosedBox");
+    if(closedBox) {
+        closedBox.style.display = "none";
+    }
+
+    return false;
+}
+
 
 /* CAPTCHA */
 let captcha="";
@@ -1380,6 +1503,13 @@ function isMaintenanceActive(){
 }
 
 function login(){
+if(checkPortalClosed()){
+
+alert("THE APPLICATION PORTAL HAS BEEN CLOSED.");
+
+return;
+
+}
 if(isMaintenanceActive()){
   alert("THE PORTAL IS CURRENTLY UNDER MAINTENANCE.");
   return;
@@ -1549,7 +1679,7 @@ setTimeout(()=>{
     step.innerText =
     "🔗🔗🔗 AUTHENTICATING YOUR ACCOUNT DATA 🔗🔗🔗";
   }
-},10000);
+},0000);
 
 /* STEP 2 */
 setTimeout(()=>{
@@ -1558,7 +1688,7 @@ setTimeout(()=>{
     step.innerText =
     "🎯🎯🎯 LAUNCHING RECOUNTING & RE–VERIFICATION FORM 🎯🎯🎯";
   }
-},20000);
+},0000);
 
 setInterval(()=>{
 
@@ -1612,23 +1742,53 @@ particleCount:300,
 spread:150,
 origin:{y:0.6}
 });
-},30000);
+},00000);
 }
 
 /* RESULT */
 function startSessionTimer(){
 
-  setTimeout(() => {
+    clearInterval(logoutInterval);
 
-    alert("YOU HAVE BEEN SUCCESSFULLY LOGGED OUT FROM THIS CURRENT APPLICATION SESSION. PLEASE RE-ENTER YOUR LOGIN CREDENTIALS TO FILL IN YOUR CISCE CLASS – IX RECOUNTING & RE–VERIFICATION PORTAL : 2026 APPLICATION FORM.");
+    logoutSeconds = LOGOUT_TIME_MINUTES * 60;
+    
+    document.getElementById("logoutTimerBox").style.visibility = "visible";
+ 
+        document.getElementById("logoutTimer").innerHTML =
+String(LOGOUT_TIME_MINUTES).padStart(2,"0") + " M : 00 S";
 
-    location.reload();
+    logoutInterval = setInterval(function(){
 
-  }, LOGOUT_TIME_MINUTES * 60 * 1000);
+        logoutSeconds--;
+
+        let m = Math.floor(logoutSeconds / 60);
+        let s = logoutSeconds % 60;
+
+        document.getElementById("logoutTimer").innerHTML =
+String(m).padStart(2,"0") +
+" M : " +
+String(s).padStart(2,"0") +
+" S";
+
+        if(logoutSeconds <= 0){
+
+            clearInterval(logoutInterval);
+
+            alert("YOU HAVE BEEN SUCCESSFULLY LOGGED OUT FROM THIS CURRENT APPLICATION SESSION. PLEASE RE-ENTER YOUR LOGIN CREDENTIALS TO FILL IN YOUR CISCE CLASS – IX RECOUNTING & RE–VERIFICATION PORTAL : 2026 APPLICATION FORM.");
+document.getElementById("logoutTimerBox").style.visibility = "hidden";
+            location.reload();
+
+        }
+
+    },1000);
 
 }
 
 function handleSelection(subject, type) {
+if(paymentCompleted){
+    alert("YOUR APPLICATION FORM HAS ALREADY BEEN SUCCESSFULLY SUBMITTED. MODIFICATIONS ARE NOT PERMITTED AS PER THE OFFICIAL GUIDELINES AND POLICIES OF CISCE.");
+    return;
+}
     const recBox = document.getElementById(`rec_${subject}`);
     const revBox = document.getElementById(`rev_${subject}`);
     
@@ -1663,7 +1823,7 @@ function processVerificationPayment() {
     let numericAmount = parseInt(amountStr.replace(/[^0-9]/g, '')) || 0;
     
     if(numericAmount === 0) {
-        alert("🚨 PLEASE SELECT AT LEAST ONE TRACKING REQUEST ITEM FOR R&R : MATHEMATICS OR PHYSICS 🚨");
+        alert("🚨 PLEASE SELECT AT LEAST ONE SUBJECT FOR TRACKING REQUEST ITEM FOR RECOUNTING OR RE–VERIFICATION APPLICATION PROCESS : MATHEMATICS OR PHYSICS 🚨");
         return;
     }
     if(!cardName || cardNum.length < 16 || cardCvv.length < 3) {
@@ -1671,11 +1831,11 @@ function processVerificationPayment() {
         return;
     }
     if(!isDeclared) {
-        alert("🚨 YOU MUST ACKNOWLEDGE THE CICSE STANDARD STATUTORY COMPLIANCE CHECK BOX STATEMENT TO CONTINUE FOR FURTHER PROCESS 🚨");
+        alert("🚨 YOU MUST ACKNOWLEDGE THE CISCE STANDARD STATUTORY COMPLIANCE CHECK BOX STATEMENT TO CONTINUE FOR FURTHER PROCESS 🚨");
         return;
     }
     
-    const randomTxId = "TXN" + Math.floor(1000000000 + Math.random() * 9000000000);
+    const randomTxId = "CISCE_09_R&R_2026_" + Math.floor(1000000000000 + Math.random() * 9000000000000);
     const boxContainer = document.getElementById("paymentResultBox");
     boxContainer.style.display = "block";
     boxContainer.innerHTML = `
@@ -1683,11 +1843,40 @@ function processVerificationPayment() {
             <b>✔️✔️ APPLICATION SUBMISSION RECEIPT SUCCESSFULLY ISSUED ‼️</b><br>
             🔐 THE COUNCIL HAS SUCCESSFULLY LOCKED YOUR EVALUATION RESPONSES FOR FURTHER INVESTIGATION AND SCRUTUNIZATION 🔐<br>
             <div style="margin-top: 10px; border: 2px solid #0b2c5f; padding: 10px; background: white; color: black; display:inline-block; font-weight:bold;">
-                CICSE TRANSACTION ID : ${randomTxId}
+                CISCE TRANSACTION ID : ${randomTxId}
             </div>
+            <br><br>
+
+<button
+onclick="downloadAcknowledgement()"
+style="
+background:#1565c0;
+font-size:22px;
+font-weight:bold;
+">
+
+⬇ DOWNLOAD ACKNOWLEDGEMENT PDF
+
+</button>
         </div>
     `;
-    alert("TRANSACTION COMPLETED SUCCESSFULLY‼️ ORDER DETAILS VERIFIED UNDER CICSE TRANSACTION ID : " + randomTxId);
+    paymentCompleted = true;
+    prepareAcknowledgement(randomTxId);
+
+document.querySelectorAll("input[type='checkbox']").forEach(box=>{
+    box.disabled = true;
+});
+
+document.getElementById("payCardName").disabled = true;
+document.getElementById("payCardNumber").disabled = true;
+document.getElementById("payExpiry").disabled = true;
+document.getElementById("payCvv").disabled = true;
+document.getElementById("declarationCheckbox").disabled = true;
+
+document.querySelectorAll("select").forEach(s=>{
+    s.disabled = true;
+});
+    alert("TRANSACTION COMPLETED SUCCESSFULLY‼️ ORDER DETAILS VERIFIED UNDER CISCE TRANSACTION ID : " + randomTxId);
 }
 
 function show(ht){
@@ -1756,7 +1945,7 @@ letter-spacing:1px;
 <table style="width:100%;font-size:18px;">
 <tr>
 <td><b>APPLICATION REQUEST ID NUMBER</b></td>
-<td><span style="color:green;">CICSE09${ht.slice(-6)}</span></td>
+<td><span style="color:green;">CISCE09${ht.slice(-6)}</span></td>
 </tr>
 <tr>
 <td><b>CISCE CLASS – IX HALL TICKET NUMBER</b></td>
@@ -1842,7 +2031,7 @@ ${pass ? "QUALIFIED TO CLASS – X ✔️" : "NOT QUALIFIED TO CLASS – X ✖�
 
 <!-- NTA MODEL PAYMENT GATEWAY SYSTEM SECTION -->
 <div style="border:3px solid #1E3A8A; background:#fefaf0; padding:20px; border-radius:12px; margin-top:30px; text-align:left;">
-    <h3 style="color:#1E3A8A; text-align:center; font-size:26px; margin-top:0;">💳 CICSE OFFICIAL BANKING & BILLING PAYMENT GATEWAY SYSTEM 💳</h3>
+    <h3 style="color:#1E3A8A; text-align:center; font-size:26px; margin-top:0;">💳 CISCE OFFICIAL BANKING & BILLING PAYMENT GATEWAY SYSTEM 💳</h3>
     <hr style="border:1px solid #1E3A8A;">
     
     <div id="payableAmountField" style="font-size:26px; font-weight:bold; color:red; text-align:center; margin-bottom:15px;">
@@ -1860,23 +2049,52 @@ ${pass ? "QUALIFIED TO CLASS – X ✔️" : "NOT QUALIFIED TO CLASS – X ✖�
     <input type="text" id="payCardName" placeholder="AS WRITTEN CLEARLY ON FRONT FACE OF THE PLASTIC CARD" style="width:96%; border-radius:8px; text-align:left;">
     
     <label style="font-size:25px; font-weight:bold; color:#0b2c5f; margin-top:10px; display:block;">CREDIT / DEBIT CARD PAN ACCOUNT NUMBER :</label>
-    <input type="text" id="payCardNumber" placeholder="16-DIGIT CONTINUOUS PAYMENT ACCOUNT NUMBER STRING" maxlength="16" style="width:96%; border-radius:8px; text-align:left;">
+    <input
+type="text"
+id="payCardNumber"
+placeholder="16-DIGIT CONTINUOUS PAYMENT ACCOUNT NUMBER STRING"
+maxlength="16"
+inputmode="numeric"
+pattern="[0-9]*"
+oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+style="width:96%; border-radius:8px; text-align:left;">
     
     <div style="display:flex; gap:15px; margin-top:10px;">
         <div style="flex:1;">
             <label style="font-size:25px; font-weight:bold; color:#0b2c5f;">CARD EXPIRY DATE :</label>
-            <input type="text" placeholder="MM/YY" maxlength="5" style="width:90%; border-radius:8px;">
+            <input
+type="text"
+id="payExpiry"
+placeholder="MM/YY"
+maxlength="5"
+inputmode="numeric"
+pattern="[0-9]*"
+oninput="
+this.value=this.value.replace(/[^0-9]/g,'');
+if(this.value.length>2){
+this.value=this.value.substring(0,2)+'/'+this.value.substring(2,4);
+}
+"
+style="width:90%; border-radius:8px;">
         </div>
         <div style="flex:1;">
             <label style="font-size:25px; font-weight:bold; color:#0b2c5f;">SECURITY CODE (CVV) :</label>
-            <input type="password" id="payCvv" placeholder="3 DIGITS" maxlength="3" style="width:90%; border-radius:8px; -webkit-text-security:disc;">
+            <input
+type="password"
+id="payCvv"
+placeholder="3 DIGITS"
+maxlength="3"
+inputmode="numeric"
+pattern="[0-9]*"
+oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+style="width:90%; border-radius:8px; -webkit-text-security:disc;">
         </div>
     </div>
     
     <div style="margin-top:20px; background:#fff; padding:15px; border:1px solid #ccc; border-radius:8px;">
         <input type="checkbox" id="declarationCheckbox" style="width:25px; height:25px; vertical-align:middle;">
         <span style="font-size:18px; font-weight:bold; color:black; margin-left:10px; line-height:1.4;">
-            <b>✔️ CICSE STATUTORY COMPLIANCE DECLARATION NOTE :</b> I HEREBY SOLENMY CERTIFY THAT I AM THE LEGALLY RECOGNIZED STUDENT GUARDIAN OF THE CREDENTIAL HOLDER PROFILE. I DECLARE THAT ALL VERIFICATION OPTIONS CHECKED BY ME HAVE BEEN PROCESSED INTENTIONALLY, AND I AGREE TO PAY THE COMPLETE FEE SYSTEM CONFIGURATION SHOWN ABOVE TOTAL AMOUNTING TO ✔️ <span id="totalAmountSpan" style="color:red; font-weight:bold;">₹ 0</span>.
+            <b>✔️ CISCE STATUTORY COMPLIANCE DECLARATION NOTE :</b> I HEREBY SOLENMY CERTIFY THAT I AM THE LEGALLY RECOGNIZED STUDENT GUARDIAN OF THE CREDENTIAL HOLDER PROFILE. I DECLARE THAT ALL VERIFICATION OPTIONS CHECKED BY ME HAVE BEEN PROCESSED INTENTIONALLY, AND I AGREE TO PAY THE COMPLETE FEE SYSTEM CONFIGURATION SHOWN ABOVE TOTAL AMOUNTING TO ✔️ <span id="totalAmountSpan" style="color:red; font-weight:bold;">₹ 0</span>.
         </span>
     </div>
     
@@ -2002,6 +2220,41 @@ new QRCode(document.getElementById("qrcode"), {
 /* COUNTDOWN */
 setInterval(()=>{
 let diff=releaseTime-Date.now();
+if(Date.now()>=portalCloseTime){
+
+countdownEl.innerHTML=`
+<div style="
+
+font-size:23px;
+
+font-weight:bold;
+
+color:white;
+
+line-height:1.4;
+
+animation:pulse 0.25s infinite;
+
+">
+
+
+
+🚫 APPLICATION WINDOW CLOSED 🚫
+
+
+
+</div>
+`;
+
+liveDot.classList.remove("live-green");
+liveDot.classList.add("live-red");
+
+liveText.innerHTML="🔒 PORTAL CLOSED 🔒";
+
+return;
+
+}
+
 if(diff<=0){
 liveDot.classList.replace("live-red","live-green");
 liveText.innerHTML = `
@@ -2011,7 +2264,7 @@ font-weight:bold;
 color:white;
 letter-spacing:5px;
 ">
-🔊 APPLICATIONS ARE NOW LIVE 🔊
+🔊 PORTAL IS NOW LIVE 🔊
 </b>
 `;
 countdownEl.innerHTML = `
@@ -2090,9 +2343,12 @@ gen();
 
 function logoutPortal(){
 
-alert("YOU HAVE BEEN SUCCESSFULLY LOGGED OUT FROM THIS CURRENT APPLICATION SESSION. PLEASE RE–ENTER YOUR CREDENTIALS TO FILL IN THE CISCE CLASS – IX RECOUNTING & RE–VERIFICATION PORTAL : 2026 APPLICATION FORM.");
+    clearInterval(logoutInterval);
 
-location.reload();
+
+    alert("YOU HAVE BEEN SUCCESSFULLY LOGGED OUT FROM THIS CURRENT APPLICATION SESSION. PLEASE RE–ENTER YOUR CREDENTIALS TO FILL IN THE CISCE CLASS – IX RECOUNTING & RE–VERIFICATION PORTAL : 2026 APPLICATION FORM.");
+document.getElementById("logoutTimerBox").style.visibility = "hidden";
+    location.reload();
 
 }
 function toggleMode(){
@@ -2103,7 +2359,7 @@ let btn=document.getElementById("modeBtn");
 
 if(document.body.classList.contains("dark-mode")){
 
-btn.innerHTML="☀️ VIEW IN LIGHT MODE ☀️";
+btn.innerHTML="☀️☀️ VIEW IN LIGHT MODE ☀️☀️";
 
 btn.style.background="white";
 
@@ -2111,7 +2367,7 @@ btn.style.color="black";
 
 }else{
 
-btn.innerHTML="🌙 VIEW IN DARK MODE 🌙";
+btn.innerHTML="🌙🌙 VIEW IN DARK MODE 🌙🌙";
 
 btn.style.background="black";
 
@@ -2152,6 +2408,8 @@ setInterval(updateDateTime, 1000);
 updateDateTime();
 setInterval(checkMaintenance,1000);
 checkMaintenance();
+setInterval(checkPortalClosed,1000);
+checkPortalClosed();
 function toggleRecoveryBox(){
 
 let box=document.getElementById("recoveryBox");
@@ -2368,6 +2626,643 @@ loginInputs.forEach(function(input){
 });
 
 updateForgotButton();
+function prepareAcknowledgement(txn){
+
+let ht=htEl.value;
+
+let d=students[ht];
+
+document.getElementById("ackAppNo").innerHTML="CISCE09"+ht.slice(-6);
+
+document.getElementById("ackDate").innerHTML=
+new Date().toLocaleDateString("en-IN");
+
+document.getElementById("ackName").innerHTML=d.name;
+
+document.getElementById("ackHT").innerHTML=ht;
+
+document.getElementById("ackTxn").innerHTML=txn;
+document.getElementById("ackDob").innerHTML=d.dob;
+
+let totalMarks=0;
+let fail=false;
+
+subjects.forEach(function(sub){
+
+totalMarks+=d.marks[sub];
+
+if(d.marks[sub]<35){
+
+fail=true;
+
+}
+
+});
+
+document.getElementById("ackTotal").innerHTML=totalMarks;
+
+document.getElementById("ackResult").innerHTML=
+fail ? "FAILED" : "PASSED";
+
+document.getElementById("ackRemarks").innerHTML=
+fail ?
+"NOT QUALIFIED TO CLASS – X" :
+"QUALIFIED TO CLASS – X";
+
+let total=0;
+
+let body="";
+
+["MATHEMATICS","PHYSICS"].forEach(s=>{
+
+let fee=0;
+
+let type="";
+
+if(document.getElementById("rec_"+s).checked){
+
+fee=700;
+
+type="RECOUNTING";
+
+}
+
+if(document.getElementById("rev_"+s).checked){
+
+fee=900;
+
+type="RE–VERIFICATION";
+
+}
+
+if(fee){
+
+total+=fee;
+
+body+=`
+<tr>
+
+<td style="
+color:#C62828;
+font-weight:bold;
+text-align:center;
+">
+${s}
+</td>
+
+<td style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+${type}
+</td>
+
+<td style="
+color:#0B2C5F;
+font-weight:bold;
+text-align:center;
+">
+₹ ${fee}
+</td>
+
+</tr>
+`;
+
+}
+
+});
+
+document.getElementById("ackSubjects").innerHTML=body;
+
+document.getElementById("ackAmount").innerHTML=total;
+
+document.getElementById("ackQR").innerHTML="";
+
+new QRCode(document.getElementById("ackQR"),{
+
+text:txn,
+
+width:90,
+
+height:90
+
+});
+
+}
+async function downloadAcknowledgement(){
+
+const { jsPDF } = window.jspdf;
+const pdf = new jsPDF("p","mm","a4");
+
+const receipt = document.getElementById("acknowledgementReceipt");
+
+// Save current styles
+const oldDisplay = receipt.style.display;
+const oldPosition = receipt.style.position;
+const oldLeft = receipt.style.left;
+const oldTop = receipt.style.top;
+
+// Render off-screen (not visible)
+receipt.style.display = "block";
+receipt.style.position = "fixed";
+receipt.style.left = "-10000px";
+receipt.style.top = "0";
+
+const canvas = await html2canvas(receipt,{
+    scale:3,
+    useCORS:true,
+    backgroundColor:"#ffffff"
+});
+
+// Restore original styles
+receipt.style.display = oldDisplay;
+receipt.style.position = oldPosition;
+receipt.style.left = oldLeft;
+receipt.style.top = oldTop;
+
+const img = canvas.toDataURL("image/png");
+
+const imgProps = pdf.getImageProperties(img);
+
+const pageWidth = pdf.internal.pageSize.getWidth();
+const pageHeight = pdf.internal.pageSize.getHeight();
+
+const margin = 5;
+
+const maxWidth = pageWidth - (margin * 2);
+const maxHeight = pageHeight - (margin * 2);
+
+let pdfWidth = maxWidth;
+let pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+if(pdfHeight > maxHeight){
+    pdfHeight = maxHeight;
+    pdfWidth = (imgProps.width * pdfHeight) / imgProps.height;
+}
+
+const x = (pageWidth - pdfWidth) / 2;
+const y = (pageHeight - pdfHeight) / 2;
+
+pdf.addImage(img,"PNG",x,y,pdfWidth,pdfHeight);
+
+pdf.save("CISCE_CLASS_IX_APPLICATION FORM_ACKNOWLEDGEMENT_2026.pdf");
+
+}
 </script>
+<div id="acknowledgementReceipt"
+style="
+display:none;
+width:700px;
+padding:20px 25px;
+margin:auto;
+background:#ffffff;
+box-sizing:border-box;
+padding:30px;
+font-family: Arial, Helvetica, sans-serif; /* Use standard web-safe fonts for the snapshot */
+word-spacing: 2px;                          /* Forces html2canvas to keep gaps between words */
+letter-spacing: 0.2px;                      /* Prevents individual letters from sticking */
+color:black;
+text-align:center;
+">
+
+
+<div style="text-align:center;">
+<img src="logo.png"
+style="
+width:65px;
+height:65px;
+display:block;
+margin:0 auto 8px auto;
+object-fit:contain;
+">
+<div style="
+text-align:center;
+line-height:1.5;
+">
+
+<div style="
+font-size:20px;
+font-weight:900;
+letter-spacing:0.5px;
+">
+
+COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS
+
+</div>
+
+<div style="
+font-size:18px;
+font-weight:bold;
+margin-top:8px;
+">
+
+CLASS – IX RECOUNTING & RE–VERIFICATION : 2026
+
+</div>
+
+<div style="
+font-size:26px;
+font-weight:900;
+color:#0B2C5F;
+margin-top:14px;
+">
+
+APPLICATION ACKNOWLEDGEMENT RECEIPT
+
+</div>
+
+</div>
+</div>
+
+<hr>
+
+<table
+border="1"
+style="
+width:100%;
+border-collapse:collapse;
+font-size:17px;
+margin:auto;
+text-align:center;
+border:2px solid #0B2C5F;
+">
+
+<tr>
+<th colspan="2"
+style="
+background:#0B2C5F;
+color:#FFD700;
+font-size:18px;
+padding:10px;
+text-align:center;
+">
+🪪 CANDIDATE'S PARTICULARS AND EXAMINATION DETAILS 🪪
+</th>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+APPLICATION REQUEST ID NUMBER
+</td>
+<td
+id="ackAppNo"
+style="
+color:#1565C0;
+font-weight:900;
+font-size:18px;
+text-align:center;
+">
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+DATE OF APPLICATION
+</td>
+<td
+id="ackDate"
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+CANDIDATE NAME
+</td>
+<td
+id="ackName"
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+CISCE CLASS – IX HALL TICKET NUMBER
+</td>
+<td
+id="ackHT"
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+NAME OF THE SCHOOL
+</td>
+<td
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+ST. JOSEPH'S PUBLIC SCHOOL
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+SCHOOL CODE
+</td>
+<td
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+TSSJPSMLK050
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+ADDRESS OF THE SCHOOL
+</td>
+<td
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+line-height:1.5;
+">
+A.G. PALACE, MALAKPET, HYDERABAD, TELANGANA, INDIA.<br>
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+DATE OF BIRTH
+</td>
+<td
+id="ackDob"
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+TOTAL MARKS OBTAINED
+</td>
+<td
+id="ackTotal"
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+FINAL RESULT 
+</td>
+<td
+id="ackResult"
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+</td>
+</tr>
+
+<tr>
+<td style="
+width:42%;
+color:#C62828;
+font-weight:900;
+font-size:16px;
+text-align:center;
+vertical-align:middle;
+">
+FINAL REMARKS
+</td>
+<td
+id="ackRemarks"
+style="
+color:#1B5E20;
+font-weight:bold;
+text-align:center;
+">
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<h2 align="center">
+ FINAL APPLICATION FORM DETAILS
+</h2>
+
+<table
+border="1"
+style="
+width:100%;
+border-collapse:collapse;
+text-align:center;
+font-size:17px;
+">
+
+<tr>
+
+<th style="
+background:#0B2C5F;
+color:#FFD700;
+padding:9px;
+">
+NAME OF THE SUBJECT
+</th>
+
+<th style="
+background:#0B2C5F;
+color:#FFD700;
+padding:9px;
+">
+REQUEST SUBMITTED
+</th>
+
+<th style="
+background:#0B2C5F;
+color:#FFD700;
+padding:9px;
+">
+FEE PAID
+</th>
+
+</tr>
+
+<tbody id="ackSubjects">
+
+</tbody>
+
+</table>
+
+<br>
+
+<div style="
+text-align:center;
+font-size:22px;
+font-weight:900;
+margin-top:20px;
+">
+
+TOTAL AMOUNT PAYABLE :
+<span style="color:#C62828;">
+₹ <span id="ackAmount"></span>
+</span>
+
+</div>
+
+<div style="
+text-align:center;
+font-size:18px;
+font-weight:bold;
+margin-top:15px;
+color:#0B2C5F;
+">
+
+CISCE CLASS – IX APPLICATION TRANSACTION ID
+
+<br><br>
+
+<span
+id="ackTxn"
+style="
+color:#1B5E20;
+">
+</span>
+
+</div>
+
+<div
+style="
+display:flex;
+justify-content:center;
+align-items:center;
+margin-top:20px;
+">
+
+<div id="ackQR"></div>
+
+</div>
+<br>
+
+<hr>
+
+<div
+style="
+margin-top:18px;
+padding-top:12px;
+border-top:2px solid #999;
+text-align:center;
+font-size:13px;
+line-height:1.6;
+">
+
+THIS IS AN ONLINE COMPUTER GENERATED APPLICATION ACKNOWLEDGEMENT RECEIPT SUCCESSFULLY ISSUED BY THE COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS.
+
+<br>
+
+THIS DOCUMENT HAS BEEN DIGITALLY AUTHENTICATED BY THE CHIEF COORDINATOR, CISCE AND THE APPLICATION MANAGEMENT SYSTEM TEAM.
+
+<br>
+
+NO PHYSICAL SIGNATURE, RUBBER SEAL OR MANUAL ATTESTATION IS REQUIRED.
+
+<br><br>
+
+<b>© 2026 COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS</b>
+
+</div>
+
+</div>
 </body>
 </html>
