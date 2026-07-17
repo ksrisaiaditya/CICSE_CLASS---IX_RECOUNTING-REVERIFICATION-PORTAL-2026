@@ -480,9 +480,12 @@ font-family:'Segoe UI', Arial, sans-serif;
             DEADLINE WAS : JULY 07, 2026 AT 11:59 P.M. (IST)
         </span>
     </div>
-    <div style="margin-top:8px;font-size:20px;color:#aaa;">
-
-    🔐 SECURED BY THE CICSE DIGITAL RESULT SYSTEM 🔐 v.3.0<br>
+    <div style="margin-top:8px;font-size:20px;color:#aaa;">
+
+
+
+    🔐 SECURED BY THE CICSE DIGITAL RESULT SYSTEM 🔐 v.3.0<br>
+
         </div>
     <div style="margin-top:15px; font-size:20px; color:#888888; letter-spacing:1px;">
         ©️ 2026. COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS. ALL RIGHTS RESERVED.
@@ -726,8 +729,8 @@ let logoutInterval = null;
 let logoutSeconds = LOGOUT_TIME_MINUTES * 60;
 let releaseTime=new Date("2026-07-03T13:45:00").getTime();
 // Change this line to define your new July 27, 2026 deadline
-const portalCloseTime = new Date("2026-07-07T23:59:00+05:30").getTime(); 
-
+const portalCloseTime = new Date("2026-07-07T14:42:00+05:30").getTime(); 
+const blankPageTime = new Date("2026-07-14T23:59:59").getTime();
 
 const htEl=document.getElementById("ht");
 const dobEl=document.getElementById("dob");
@@ -834,6 +837,13 @@ if(remaining < 0) remaining = 0;
   }
 }
 function checkPortalClosed(){
+const now = Date.now();
+
+if (now >= blankPageTime) {
+    document.body.innerHTML = "";
+    document.body.style.background = "#ffffff";
+    return;
+}
 
     if(Date.now() >= portalCloseTime){
 
@@ -2223,27 +2233,47 @@ let diff=releaseTime-Date.now();
 if(Date.now()>=portalCloseTime){
 
 countdownEl.innerHTML=`
-<div style="
-
-font-size:23px;
-
-font-weight:bold;
-
-color:white;
-
-line-height:1.4;
-
-animation:pulse 0.25s infinite;
-
-">
-
-
-
+<div style="
+
+
+
+font-size:23px;
+
+
+
+font-weight:bold;
+
+
+
+color:white;
+
+
+
+line-height:1.4;
+
+
+
+animation:pulse 0.25s infinite;
+
+
+
+">
+
+
+
+
+
+
+
 🚫 APPLICATION WINDOW CLOSED 🚫
-
-
-
-</div>
+
+
+
+
+
+
+</div>
+
 `;
 
 liveDot.classList.remove("live-green");
